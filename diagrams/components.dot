@@ -1,0 +1,12 @@
+digraph G {graph [bgcolor="white",pad="0.3",nodesep="0.45",ranksep="0.65",fontname="Arial"]; node [shape=box,style="rounded,filled",fillcolor="#F1F6F3",color="#AEC7B8",fontname="Arial",fontsize=13,margin="0.18,0.12"]; edge [color="#789587",fontname="Arial",fontsize=10];rankdir=TB; browser [label="Browser
+Guest, staff, owner and administrator"]; nginx [label="Nginx
+HTTPS, routing and request limits"]; ui [label="Next.js / React / TypeScript
+Interface and presentation state"]; subgraph cluster_api {label="Go REST API — modular monolith";labeljust="l";fontname="Arial";color="#AEC7B8"; auth [label="Access control
+Session, role and tenant context",fillcolor="#DEF0E2"]; manage [label="Company management
+Branches, staff, plans and limits"]; loyalty [label="Loyalty operations
+Visits, rewards and ledger"]; reports [label="Reporting
+Defined tenant-scoped metrics"]; auth->manage;auth->loyalty;auth->reports;} pg [shape=cylinder,label="PostgreSQL
+Ledger, events, audit and access versions"]; redis [shape=cylinder,label="Redis
+Sessions, limits and temporary state"]; files [label="Private file storage
+Authorised access through API"]; backup [label="Encrypted external backup
+Database and files; restore verification",style="rounded,dashed"];browser->nginx [label="HTTPS"];nginx->ui;nginx->auth [label="REST / JSON"];ui->auth [style=dashed,label="OpenAPI contract"];auth->redis;manage->pg;loyalty->pg [label="Atomic transaction"];reports->pg;manage->files;pg->backup [style=dashed];files->backup [style=dashed];}

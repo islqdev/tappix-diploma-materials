@@ -1,0 +1,20 @@
+name: Published materials integrity
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify published file checksums
+        run: sha256sum --check SHA256SUMS
+      - name: Ensure application code is excluded
+        run: |
+          test ! -d backend
+          test ! -d frontend
+          test ! -d apps
+          test ! -d infra
+          test ! -d backups
+          test -s README.md
+          test -s docs/report/en/Tappix-Pre-Defense-Report-EN.pdf

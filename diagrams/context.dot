@@ -1,0 +1,8 @@
+digraph G {graph [bgcolor="white",pad="0.3",nodesep="0.45",ranksep="0.65",fontname="Arial"]; node [shape=box,style="rounded,filled",fillcolor="#F1F6F3",color="#AEC7B8",fontname="Arial",fontsize=13,margin="0.18,0.12"]; edge [color="#789587",fontname="Arial",fontsize=10];rankdir=TB; app [label="TAPPIX
+Digital loyalty platform",fillcolor="#DEF0E2",fontsize=20]; admin [label="Platform administrator
+Companies, plans and access"]; owner [label="Business owner
+Programme, team and metrics"]; staff [label="Staff member
+Visit and reward operations"]; guest [label="Guest
+Own cards and activity"]; backup [label="Independent backup storage
+Encrypted database and files",style="rounded,dashed"]; notify [label="Notification provider
+Recovery and operational alerts",style="rounded,dashed"]; {rank=same;admin;owner} {rank=same;staff;guest} admin->app [label="Provision"]; owner->app [label="Manage own company"]; app->staff [dir=both,label="Authorised operations"]; app->guest [dir=both,label="Verified card access"]; app->backup [style=dashed,label="Planned backup"]; app->notify [style=dashed,label="Minimum necessary data"]; }
